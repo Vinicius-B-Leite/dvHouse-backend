@@ -41,8 +41,8 @@ class HouseController {
         const users = await User.findById(user_id)
         const house = await House.findById(house_id)
 
-        if(String(users._id)!== String(house.user)) {
-            return res.json({message: 'Sem acesso.'})
+        if (String(users._id) !== String(house.user)) {
+            return res.json({ message: 'Sem acesso.' })
         }
 
 
@@ -56,6 +56,23 @@ class HouseController {
         })
 
         return res.json()
+    }
+
+
+    async destroy(req, res) {
+        const { house_id } = req.body
+        const { user_id } = req.headers
+
+        const users = await User.findById(user_id)
+        const house = await House.findById(house_id)
+
+        if (String(users._id) !== String(house.user)) {
+            return res.json({ message: 'Sem acesso.' })
+        }
+
+        await House.findByIdAndDelete({_id: house_id})
+
+        return res.json({ message: 'Casa deletada' })
     }
 }
 
