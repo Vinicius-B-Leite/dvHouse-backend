@@ -1,0 +1,1 @@
+mongodb+srv://vinicius:viniciusbl21@cluster0.5n8cxvx.mongodb.net/?retryWrites=true&w=majority
